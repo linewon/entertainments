@@ -1,0 +1,14 @@
+server:
+  port: 7080
+  
+spring:
+  application:
+    name: entertain-my-boot
+  datasource:
+    url: jdbc:mysql://localhost:3306/line
+    username: root
+    password: root1983
+    driverClassName: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
