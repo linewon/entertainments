@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author line
  */
 @SpringBootApplication
+//@EnableTransactionManagement
 public class BootApplication {
 
     public static void main(String[] args) {
