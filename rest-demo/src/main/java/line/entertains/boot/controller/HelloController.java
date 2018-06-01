@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSON;
+
 import line.entertains.boot.entity.UserInfo;
 import line.entertains.boot.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@Slf4j
 public class HelloController {
 
 	@Autowired
@@ -34,6 +38,7 @@ public class HelloController {
 	
 	@PostMapping("/user")
 	public String updateUser(@RequestBody UserInfo userInfo) throws Exception {
+		log.info("/user. request: {}", JSON.toJSONString(userInfo));
 		return userService.modifyUserInfo(userInfo);
 	}
 }

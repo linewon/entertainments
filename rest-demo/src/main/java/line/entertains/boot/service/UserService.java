@@ -33,13 +33,15 @@ public class UserService {
 		 
 		 /*
 		  * 这个getOne好像查不到东西。。。
+		  * 
+		  * 我次奥，debug的时候变量里看不到，日志打出来有东西。。
 		  */
 		 UserInfo another = userDao.getOne(new Integer(11));
 		 log.info("another by getOne(ID) : {}", JSON.toJSONString(another));
 		 
 		 userDao.save(old);
 		 
-		 boolean tag = true;
+		 boolean tag = false;
 		 if (tag)
 			 throw new Exception();
 		 
