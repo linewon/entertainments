@@ -9,7 +9,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import line.entertains.boot.filter.wrapper.MyResponseWrapper;
 import lombok.extern.slf4j.Slf4j;
 
 @WebFilter(urlPatterns = "/", filterName = "startTimeFilter")
@@ -25,9 +28,16 @@ public class StartTimeFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		log.info("doFilter 00000000000");
-		chain.doFilter(request, response);
-		log.info("doFilter 11111111111");
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse resp = (HttpServletResponse) response;
+
+		MyResponseWrapper respWrapper = new MyResponseWrapper(resp);
+		log.info("filter.begin : {}", req.getRequestURI());
+		chain.doFilter(request, respWrapper);
+
+		String respString = new String(respWrapper.getBytes());
+		log.info("filter.end : {}", respString);
+		response.getOutputStream().write(respWrapper.getBytes());
 	}
 
 	@Override
