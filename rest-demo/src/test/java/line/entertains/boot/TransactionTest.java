@@ -9,12 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import line.entertains.boot.dao.UserDao;
 import line.entertains.boot.entity.UserInfo;
-import lombok.extern.slf4j.Slf4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Transactional(rollbackFor = Exception.class)
-@Slf4j
 public class TransactionTest {
 
 	@Autowired
