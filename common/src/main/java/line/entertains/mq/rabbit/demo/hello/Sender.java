@@ -1,4 +1,4 @@
-package line.entertains.rabbit.demo.hello;
+package line.entertains.mq.rabbit.demo.hello;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -7,6 +7,12 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
+/**
+ * Hello! RabbitMQ
+ * 
+ * @author line
+ *
+ */
 public class Sender {
 
 	private static final String QUEUE_NAME = "hello";

@@ -1,4 +1,4 @@
-package line.entertains.rabbit.demo.workers;
+package line.entertains.mq.rabbit.demo.workers;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -7,6 +7,12 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
+/**
+ * http://www.rabbitmq.com/tutorials/tutorial-two-java.html
+ * 
+ * @author line
+ *
+ */
 public class WorkerSender {
 
 	private static final String QUEUE_NAME = "workers";
