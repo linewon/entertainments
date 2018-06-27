@@ -6,6 +6,13 @@
 	<version>1.0.0</version>
 
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
+		<dependency>
+			<groupId>com.rabbitmq</groupId>
+			<artifactId>amqp-client</artifactId>
+			<version>5.3.0</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/com.esotericsoftware.reflectasm/reflectasm -->
 		<dependency>
 			<groupId>com.esotericsoftware.reflectasm</groupId>
@@ -19,6 +26,7 @@
 			<version>1.16.22</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<!-- 配置一个日志组件： SLF4J + LOGBACK -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
