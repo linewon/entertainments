@@ -38,7 +38,7 @@ public class WorkerReceiver {
 		Channel channel = connection.createChannel();
 		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
-		channel.basicQos(1); // ‰∏ÄÊ¨°Êé•Âèó‰∏Ä‰∏™‰ªªÂä°
+		channel.basicQos(3); // “ª¥ŒΩ” ‹“ª∏ˆ»ŒŒÒ
 
 		Consumer consumer = new DefaultConsumer(channel) {
 			@Override
@@ -53,19 +53,19 @@ public class WorkerReceiver {
 				} finally {
 					System.out.println("done task: " + message);
 					channel.basicAck(envelope.getDeliveryTag(), false);
+//					channel.basicAck(envelope.getDeliveryTag(), true);
 				}
 			}
 		};
 
-		// channel.basicConsume(QUEUE_NAME, consumer);
-		// channel.basicConsume(QUEUE_NAME, true, consumer);
+//		 channel.basicConsume(QUEUE_NAME, true, consumer);
 		channel.basicConsume(QUEUE_NAME, false, consumer);
 	}
 
 	private static void doWork(String work) throws InterruptedException {
 
 		for (char ch : work.toCharArray())
-			if (ch == '„ÄÇ')
-				Thread.sleep(1000);
+			if (ch == '°£')
+				Thread.sleep(500);
 	}
 }

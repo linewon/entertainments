@@ -1,4 +1,4 @@
-package line.entertains.mq.rabbit.demo.exchange.direct;
+package line.entertains.mq.rabbit.demo.exchange.topic;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -11,33 +11,24 @@ import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
-/**
- * RabbitMQ demo: direct exchange
- * 
- * exchange "direct-routing" 3 queues:
- * 		1> qName=queue-direct-divided3, rKey=divided3;
- * 		2> qName=queue-direct-else, rKey=else;
- * 		3> qName=queue-direct-both, rKey=divided3 & else.
- * 
- * @author line
- *
- */
-public class DirectReceiver {
-
+public class TopicReceiver {
 	private static final String HOST = "192.168.85.130";
 	private static final int PORT = 5672;
 	private static final String USER_NAME = "line";
 	private static final String PASSWD = "123123";
 
-	private static final String EXCH_NAME = "direct-routing";
+	private static final String EXCH_NAME = "topic-logs";
+	private static final String ROUT_RULE = "topic";
 
-//	 private static final String QUEUE_NAME = "queue-direct-divided3";
-//	 private static final String QUEUE_NAME = "queue-direct-else";
-	private static final String QUEUE_NAME = "queue-direct-both";
+//	private static final String QUEUE_NAME = "topic-logs-error-warn";
+//	 private static final String QUEUE_NAME = "topic-logs-kernel";
+	 private static final String QUEUE_NAME = "topic-logs-fanout";
 
-	private static final String ROUT_KEY_DIVI = "divided3";
-	private static final String ROUT_KEY_ELSE = "else";
-//	private static final String ROUT_KEY_SHIT = "shit"; // 可以为已存在的队列新增routing key
+	private static final String ROUT_KEY_ERROR = "*.error";
+	private static final String ROUT_KEY_WARN = "*.warn";
+	private static final String ROUT_KEY_KERNEL = "kernel.*";
+	private static final String ROUT_KEY_FANOUT = "#";
+	// private static final String ROUT_KEY_SHIT = "shit"; // 可以为已存在的队列新增routing key
 
 	public static void main(String[] args) throws IOException, TimeoutException {
 
@@ -50,18 +41,15 @@ public class DirectReceiver {
 		Connection connection = cFactory.newConnection();
 
 		Channel channel = connection.createChannel();
-		channel.exchangeDeclare(EXCH_NAME, "direct");
+		channel.exchangeDeclare(EXCH_NAME, ROUT_RULE);
 		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-		channel.queueBind(QUEUE_NAME, EXCH_NAME, ROUT_KEY_DIVI);
-		channel.queueBind(QUEUE_NAME, EXCH_NAME, ROUT_KEY_ELSE);
-//		channel.queueBind(QUEUE_NAME, EXCH_NAME, ROUT_KEY_SHIT);
+//		channel.queueBind(QUEUE_NAME, EXCH_NAME, ROUT_KEY_ERROR);
+//		channel.queueBind(QUEUE_NAME, EXCH_NAME, ROUT_KEY_WARN);
+//		 channel.queueBind(QUEUE_NAME, EXCH_NAME, ROUT_KEY_KERNEL);
+		 channel.queueBind(QUEUE_NAME, EXCH_NAME, ROUT_KEY_FANOUT);
 		channel.basicQos(1);
 		System.out.println("************  binding ************\nqueueName: " + QUEUE_NAME
-							+ "\nexchangeName: " + EXCH_NAME
-							+ "\nroutingKey: " + ROUT_KEY_DIVI
-//							+ "\nroutingKey: " + ROUT_KEY_ELSE
-							+ ", " + ROUT_KEY_ELSE
-							);
+								+ "\nexchangeName: " + EXCH_NAME);
 
 		Consumer consumer = new DefaultConsumer(channel) {
 			@Override
@@ -81,7 +69,7 @@ public class DirectReceiver {
 				}
 			}
 		};
-		
+
 		channel.basicConsume(QUEUE_NAME, false, consumer);
 	}
 }
