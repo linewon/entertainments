@@ -35,6 +35,9 @@ public class WorkerReceiver {
 		factory.setPassword(PASSWD);
 
 		Connection connection = factory.newConnection();
+		/*
+		 * 虽然可以理解，但是之前测试的时候好好的，为什么突然这个地方要被定义成final的？
+		 */
 		final Channel channel = connection.createChannel();
 		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
