@@ -35,10 +35,10 @@ public class WorkerReceiver {
 		factory.setPassword(PASSWD);
 
 		Connection connection = factory.newConnection();
-		Channel channel = connection.createChannel();
+		final Channel channel = connection.createChannel();
 		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
-		channel.basicQos(3); // Ò»´Î½ÓÊÜÒ»¸öÈÎÎñ
+		channel.basicQos(3); // ä¸€æ¬¡æ¥å—ä¸€ä¸ªä»»åŠ¡
 
 		Consumer consumer = new DefaultConsumer(channel) {
 			@Override
@@ -65,7 +65,7 @@ public class WorkerReceiver {
 	private static void doWork(String work) throws InterruptedException {
 
 		for (char ch : work.toCharArray())
-			if (ch == '¡£')
+			if (ch == 'ã€‚')
 				Thread.sleep(500);
 	}
 }

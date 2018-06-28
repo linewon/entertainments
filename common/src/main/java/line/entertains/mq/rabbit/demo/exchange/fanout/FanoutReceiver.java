@@ -47,7 +47,7 @@ public class FanoutReceiver {
 
 		Connection connection = cFactory.newConnection();
 		
-		Channel channel = connection.createChannel();
+		final Channel channel = connection.createChannel();
 		channel.exchangeDeclare(EXCH_NAME, "fanout");
 		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 		channel.queueBind(QUEUE_NAME, EXCH_NAME, "");
