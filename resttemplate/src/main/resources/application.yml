@@ -1,0 +1,6 @@
+server:
+  port: 7081
+  
+spring:
+  application:
+    name: entertain-resttemplate-demo
