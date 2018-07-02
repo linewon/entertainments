@@ -5,6 +5,14 @@
 	<artifactId>entertain-common</artifactId>
 	<version>1.0.0</version>
 
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compile.encoding>UTF-8</maven.compile.encoding>
+	</properties>
+	
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
 		<dependency>

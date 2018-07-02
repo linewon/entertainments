@@ -18,25 +18,20 @@ public class RestTemplateConfig {
 		return new RestTemplate(factory);
 	}
 	
-//	@Bean
-//	public AsyncRestTemplate asyncRestTemplate(ThreadPoolTaskExecutor executor, AsyncClientHttpRequestFactory factory) {
-//		AsyncRestTemplate restTemplate = new AsyncRestTemplate(executor);
-//		restTemplate.setAsyncRequestFactory(factory);
-//		return restTemplate;
-//	}
-	
 	@Bean
 	public AsyncRestTemplate asyncRestTemplate(AsyncClientHttpRequestFactory factory) {
-		AsyncRestTemplate restTemplate = new AsyncRestTemplate(factory);
-		return restTemplate;
+		return new AsyncRestTemplate(factory);
 	}
 	
 	@Bean
-	public SimpleClientHttpRequestFactory simpleClientHttpRequestFactory() {
+	public SimpleClientHttpRequestFactory simpleClientHttpRequestFactory(ThreadPoolTaskExecutor executor) {
 		SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
-		// 得想办法测一下这个超时设置的到底有没有用！
+		/*
+		 * 超时时间设置的起效了
+		 */
 		factory.setReadTimeout(8000);
 		factory.setConnectTimeout(3000);
+		factory.setTaskExecutor(executor);
 		return factory;
 	}
 

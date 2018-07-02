@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>line.entertains.rest</groupId>
-	<artifactId>entertain-my-boot</artifactId>
+	<artifactId>rest-demo</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
