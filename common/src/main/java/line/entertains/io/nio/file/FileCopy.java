@@ -56,8 +56,24 @@ public class FileCopy {
 		fis.close();
 		fos.close();
 	}
+	
+	public static void writeIntoFile(String text, String path) throws IOException {
+		ByteBuffer buffer = ByteBuffer.wrap(text.getBytes());
+		
+		// 输出
+		FileOutputStream fos = new FileOutputStream(new File(path));
+		FileChannel foc = fos.getChannel();
 
-	public static void main(String[] args) {
+
+		buffer.flip(); // ***
+		foc.write(buffer);
+		buffer.clear(); // ***
+		
+		foc.close();
+		fos.close();
+	}
+
+	public static void main(String[] args) throws IOException {
 
 		Scanner sc = new Scanner(System.in);
 
