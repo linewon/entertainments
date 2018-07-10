@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>line.entertain.common</groupId>
-	<artifactId>entertain-common</artifactId>
+	<groupId>line.entertain.netty</groupId>
+	<artifactId>netty-demo</artifactId>
 	<version>1.0.0</version>
 
 	<properties>
@@ -21,20 +21,7 @@
 			<artifactId>netty-all</artifactId>
 			<version>4.1.25.Final</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
-		<dependency>
-			<groupId>com.rabbitmq</groupId>
-			<artifactId>amqp-client</artifactId>
-			<version>5.3.0</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.esotericsoftware.reflectasm/reflectasm -->
-		<dependency>
-			<groupId>com.esotericsoftware.reflectasm</groupId>
-			<artifactId>reflectasm</artifactId>
-			<version>1.09</version>
-		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

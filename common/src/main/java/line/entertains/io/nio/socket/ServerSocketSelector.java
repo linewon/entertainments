@@ -109,8 +109,8 @@ public class ServerSocketSelector {
 		SocketChannel sc = (SocketChannel) key.channel();
 		sc.write(buffer);
 
-		key.interestOps(key.interestOps() ^ SelectionKey.OP_WRITE);
-		// sc.close();
+		key.interestOps(key.interestOps() ^ SelectionKey.OP_WRITE); // 置为多次读写
+		// sc.close(); // 直接关闭信道
 	}
 
 	public static void main(String args2[]) throws Exception {
