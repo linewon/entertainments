@@ -1,5 +1,4 @@
-package line.entertainments.netty.discard;
-
+package line.entertainments.netty.time;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -9,29 +8,14 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-
 import lombok.AllArgsConstructor;
 
-/**
- * keys:
- * 1. EventLoop & EventLoopGroup
- * 2. ServerBootstrap
- * 3. java.nio.SocketChannel & io.netty.channel.socket.SocketChannel
- * 4. NioServerSocketChannel & NioSocketChannel
- * 5. ChannelInitializer
- * 6. ChannelHandler & ChannelHandlerAdapter & ChannelInboundHandlerAdapter
- * 7. ChannelInboundHandlerAdapter & ChannelOutboundHandlerAdapter
- * 8. ChannelFuture
- * 9. ChannelPipeline
- * @author line
- *
- */
 @AllArgsConstructor
-public class DiscardServer {
-
+public class TimeServer {
 	private int port;
 
 	public void run() throws InterruptedException {
+		
 		EventLoopGroup boss = new NioEventLoopGroup(), worker = new NioEventLoopGroup();
 
 		try {
@@ -42,7 +26,7 @@ public class DiscardServer {
 						
 						@Override
 						public void initChannel(SocketChannel ch) throws Exception {
-							ch.pipeline().addLast(new DiscardServerHandler());
+							ch.pipeline().addLast(new TimeServerHandler());
 						}
 					})
 					.option(ChannelOption.SO_BACKLOG, 128)
@@ -64,6 +48,6 @@ public class DiscardServer {
 			port = 19003;
 		}
 		
-		new DiscardServer(port).run();
+		new TimeServer(port).run();
 	}
 }
