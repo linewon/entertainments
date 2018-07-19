@@ -9,6 +9,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldPrepender;
+import line.entertainments.netty.codec.handler.inbound.TimeHandler;
 import lombok.AllArgsConstructor;
 
 /**
@@ -45,7 +46,7 @@ public class Client {
 					/*
 					 * 这里，客户端的配置，和服务器的要匹配起来
 					 */
-					ch.pipeline().addLast(new LengthFieldPrepender(4));
+//					ch.pipeline().addLast(new LengthFieldPrepender(4));
 					ch.pipeline().addLast(new TimeHandler());
 				}
 			});

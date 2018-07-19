@@ -53,9 +53,9 @@ public class CommonController {
 	}
 	
 	@GetMapping("/async2")
-	public DeferredResult<String> sendInAsync2() {
+	public DeferredResult<String> sendInAsync2(Integer slpTime) {
 		
-		ListenableFuture<ResponseEntity<String>> forEntity = asyncRestTemplate.getForEntity("http://localhost:7080/user", String.class);
+		ListenableFuture<ResponseEntity<String>> forEntity = asyncRestTemplate.getForEntity("http://localhost:7080/user?slpTime=" + slpTime, String.class);
 		
 		DeferredResult<String> deferredResult = new DeferredResult<>();
         forEntity.addCallback(new ListenableFutureCallback<ResponseEntity<String>>() {
