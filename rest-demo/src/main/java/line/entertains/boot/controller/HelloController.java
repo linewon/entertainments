@@ -21,18 +21,17 @@ public class HelloController {
 	@Autowired
 	UserService userService;
 
-	int sleep = 3;
-
 	@GetMapping("/user")
-	public String queryUser() {
+	public String queryUser(Integer slpTime) {
+
+		log.info("sltTime: {}", slpTime);
 		try {
-			Thread.sleep(sleep * 1000);
+			for (int i = 0; i < slpTime; i++) {
+				log.info("sleep --- {}", i);
+				Thread.sleep(1000);
+			}
 		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		sleep += 2;
-		if (sleep > 11) {
-			sleep = 3;
+			log.error("sleep exception", e);
 		}
 		return "QUERY USER!";
 	}

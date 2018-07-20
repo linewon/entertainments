@@ -1,4 +1,4 @@
-package line.entertainments.netty.codec.lenght.base;
+package line.entertainments.netty.codec.handler.inbound;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
