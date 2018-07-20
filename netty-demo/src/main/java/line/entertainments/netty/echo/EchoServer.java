@@ -48,7 +48,7 @@ public class EchoServer {
 		if (args.length > 0) {
 			port = Integer.parseInt(args[0]);
 		} else {
-			port = 19003;
+			port = 19000;
 		}
 		
 		new EchoServer(port).run();

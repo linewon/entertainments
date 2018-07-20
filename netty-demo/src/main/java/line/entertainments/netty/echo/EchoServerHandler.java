@@ -1,8 +1,8 @@
 package line.entertainments.netty.echo;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
@@ -30,21 +30,21 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 		String timeStr = String.valueOf(time);
 		log.info("current time: {}", timeStr);
 		
-		ByteBuf buf = Unpooled.buffer(4); // ctx.alloc().buffer(4);
-		buf.writeBytes((" --curTime:" + timeStr).getBytes());
+//		ByteBuf buf = Unpooled.buffer(4); // ctx.alloc().buffer(4);
+//		buf.writeBytes((" --curTime:" + timeStr).getBytes());
+//		
+//		// CompositeByteBuf
+//		ByteBuf resp = Unpooled.wrappedBuffer(in, buf);
 		
-		// CompositeByteBuf
-		ByteBuf resp = Unpooled.wrappedBuffer(in, buf);
-		
-		ChannelFuture f = ctx.write(resp);
-//		f.addListener(new ChannelFutureListener() {
-//			
-//			@Override
-//			public void operationComplete(ChannelFuture future) throws Exception {
-//				assert f == future;
-//				ctx.close();
-//			}
-//		});
+		ChannelFuture f = ctx.write(in);
+		f.addListener(new ChannelFutureListener() {
+			
+			@Override
+			public void operationComplete(ChannelFuture future) throws Exception {
+				assert f == future;
+				ctx.close();
+			}
+		});
 	}
 	
 	@Override

@@ -1,4 +1,4 @@
-package line.entertainments.netty.codec.lenght.base;
+package line.entertainments.netty.codec.handler.inbound;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
