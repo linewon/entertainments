@@ -1,4 +1,4 @@
-package line.entertains.io.bio.file;
+package line.entertains.io.file.bio;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
