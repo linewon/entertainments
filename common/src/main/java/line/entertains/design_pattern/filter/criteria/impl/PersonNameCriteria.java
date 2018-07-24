@@ -4,7 +4,6 @@ import java.util.List;
 
 import line.entertains.design_pattern.filter.criteria.Criteria;
 import line.entertains.design_pattern.filter.entity.Person;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
