@@ -13,7 +13,7 @@ public class Solution55 {
 	public boolean canJump(int[] nums) {
 		int reach = nums[0];
 		/*
-		 * i=1: 下标0已经赋给reach，所以从下标1开始 i < nums.length: 最后一个肯定不用验 i <= reach: 0的情况肯定是不允许的
+		 * i=1: 下标0已经赋给reach，所以从下标1开始. i < nums.length: 最后一个肯定不用验. i <= reach: 0的情况肯定是不允许的
 		 */
 		for (int i = 1; i < nums.length - 1 && i <= reach; i++) {
 			reach = Math.max(reach, nums[i] + i);

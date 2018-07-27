@@ -14,8 +14,8 @@ public class Solution53 {
 
 	public int maxSubArray(int[] nums) {
 
-		int endHere = nums[0];
-		int soFar = nums[0];
+		int endHere = nums[0]; // 局部最优
+		int soFar = nums[0]; // 全局最优
 
 		for (int i = 1; i < nums.length; i++) {
 			endHere = Math.max(nums[i], nums[i] + endHere);
