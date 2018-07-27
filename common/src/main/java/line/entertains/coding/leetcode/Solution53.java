@@ -1,4 +1,4 @@
-package line.entertains.leetcode;
+package line.entertains.coding.leetcode;
 
 /**
  * https://leetcode-cn.com/problems/maximum-subarray/description/
