@@ -7,6 +7,7 @@ import line.entertains.design_pattern.state.state.State;
 import line.entertains.design_pattern.state.state.StoppedState;
 import line.entertains.design_pattern.state.state.StoppingState;
 
+
 public class ContextStateFactory {
 
 	public State getState(ContextState contextState) {
