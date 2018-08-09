@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.alibaba.fastjson.JSON;
-
 import line.entertains.boot.dao.UserDao;
 import line.entertains.boot.entity.UserInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +27,8 @@ public class UserService {
 		 String userName = userInfo.getUserName();
 		 
 		 UserInfo old = userDao.findByUserName(userName);
+		 
+		 log.info("query userInfo: {}", old);
 		 old.setNickName(userInfo.getNickName());
 		 
 		 /*
@@ -37,7 +37,7 @@ public class UserService {
 		  * 我次奥，debug的时候变量里看不到，日志打出来有东西。。
 		  */
 		 UserInfo another = userDao.getOne(new Integer(11));
-		 log.info("another by getOne(ID) : {}", JSON.toJSONString(another));
+		 log.info("query another userInfo: {}", another.toString());
 		 
 		 userDao.save(old);
 		 

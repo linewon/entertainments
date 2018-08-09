@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSON;
-
 import line.entertains.boot.entity.UserInfo;
 import line.entertains.boot.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
+//@Scope("prototype")
 @Slf4j
 public class HelloController {
 
@@ -24,7 +23,7 @@ public class HelloController {
 	@GetMapping("/user")
 	public String queryUser(Integer slpTime) {
 
-		log.info("sltTime: {}", slpTime);
+		log.info("queryUser.  sltTime: {}. CONTROLLER:{}", slpTime, this.toString());
 		try {
 			for (int i = 0; i < slpTime; i++) {
 				log.info("sleep --- {}", i);
@@ -33,6 +32,8 @@ public class HelloController {
 		} catch (InterruptedException e) {
 			log.error("sleep exception", e);
 		}
+
+		log.info("queryUser.  response.");
 		return "QUERY USER!";
 	}
 
@@ -48,7 +49,19 @@ public class HelloController {
 
 	@PostMapping("/user")
 	public String updateUser(@RequestBody UserInfo userInfo) throws Exception {
-		log.info("/user. request: {}", JSON.toJSONString(userInfo));
-		return userService.modifyUserInfo(userInfo);
+		log.info("/user. userInfo: {}", userInfo.toString());
+		try {
+			for (int i = 0; i < 9; i++) {
+				log.info("sleep *** {}", i);
+				Thread.sleep(1000);
+			}
+		} catch (InterruptedException e) {
+			log.error("sleep exception", e);
+		}
+
+		String resp = userService.modifyUserInfo(userInfo);
+		log.info("UPDATE USER SUCCESSFULLY!");
+
+		return resp;
 	}
 }

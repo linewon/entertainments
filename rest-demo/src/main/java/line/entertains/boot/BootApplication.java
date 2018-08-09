@@ -21,11 +21,11 @@ public class BootApplication {
         SpringApplication.run(BootApplication.class, args);
     }
     
-    @Bean
-    public FilterRegistrationBean filterRegistrationBean() {
-       FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-       StartTimeFilter myFilter = new StartTimeFilter();
-       registrationBean.setFilter(myFilter);
-       return registrationBean;
-    }
+//    @Bean
+//    public FilterRegistrationBean filterRegistrationBean() {
+//       FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+//       StartTimeFilter myFilter = new StartTimeFilter();
+//       registrationBean.setFilter(myFilter);
+//       return registrationBean;
+//    }
 }
