@@ -9,6 +9,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * keys:
@@ -18,6 +19,7 @@ import lombok.AllArgsConstructor;
  *
  */
 @AllArgsConstructor
+@Slf4j
 public class TimeClient {
 	
 	private String host;
@@ -43,6 +45,8 @@ public class TimeClient {
 		} finally {
 			workerGroup.shutdownGracefully();
 		}
+		
+		log.info("client shutdown");
 	}
 	
 	public static void main(String[] args) throws InterruptedException {

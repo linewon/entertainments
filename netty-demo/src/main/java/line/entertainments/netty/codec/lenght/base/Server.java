@@ -26,7 +26,7 @@ public class Server {
 
 	public void run() throws InterruptedException {
 
-		EventLoopGroup boss = new NioEventLoopGroup(), worker = new NioEventLoopGroup();
+		EventLoopGroup boss = new NioEventLoopGroup(1), worker = new NioEventLoopGroup();
 
 		try {
 			ServerBootstrap bootstrap = new ServerBootstrap();

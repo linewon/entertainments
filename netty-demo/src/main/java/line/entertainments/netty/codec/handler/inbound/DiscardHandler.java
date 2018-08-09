@@ -1,6 +1,8 @@
 package line.entertainments.netty.codec.handler.inbound;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
@@ -26,6 +28,16 @@ public class DiscardHandler extends ChannelInboundHandlerAdapter {
 		ByteBuf buf = (ByteBuf) msg;
 		String msgStr = buf.toString(CharsetUtil.UTF_8);
 		log.info("receive message: {}", msgStr);
+		
+//		ChannelFuture f = ctx.write(buf);
+//		f.addListener(new ChannelFutureListener() {
+//			
+//			@Override
+//			public void operationComplete(ChannelFuture future) throws Exception {
+//				assert f == future;
+//				ctx.close();
+//			}
+//		});
 	}
 	
 	@Override

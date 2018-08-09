@@ -15,8 +15,8 @@ public class TimeClientHandler extends ChannelInboundHandlerAdapter {
 		ByteBuf in = (ByteBuf) msg;
 		try {
 			
-			String tmp = in.toString(0, 19, CharsetUtil.UTF_8);
-//			String time = in.toString(CharsetUtil.UTF_8);
+//			String tmp = in.toString(0, 19, CharsetUtil.UTF_8);
+			String tmp = in.toString(CharsetUtil.UTF_8);
 			long curTime = in.readLong();
 			log.info("client receive the time response: {}", tmp + curTime);
 			

@@ -49,9 +49,17 @@ public class BigStringHandler extends ChannelInboundHandlerAdapter {
 		
 		ByteBuf resultBuf = ctx.alloc().buffer();
 		resultBuf.writeBytes(sb.toString().getBytes());
-		ctx.write(resultBuf);
 		
-		ctx.flush();
+		/*
+		 * 据说这样优化，可以避免线程切换，相对于：
+		 * ctx.writeAndFlush()来说的话。
+		 */
+		ctx.channel().eventLoop().execute(new Runnable() {
+			@Override
+			public void run() {
+				ctx.writeAndFlush(resultBuf);
+			}
+		});
 		fis.close();
 	}
 	
