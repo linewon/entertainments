@@ -39,6 +39,15 @@ public class HelloController {
 
 	@PutMapping("/user")
 	public String newUser() {
+		log.info("queryUser. CONTROLLER:{}", this.toString());
+		try {
+			for (int i = 0; i < 65; i++) {
+				log.info("sleep --- {}", i);
+				Thread.sleep(1000);
+			}
+		} catch (InterruptedException e) {
+			log.error("sleep exception", e);
+		}
 		return "NEW USER!";
 	}
 
@@ -51,7 +60,7 @@ public class HelloController {
 	public String updateUser(@RequestBody UserInfo userInfo) throws Exception {
 		log.info("/user. userInfo: {}", userInfo.toString());
 		try {
-			for (int i = 0; i < 9; i++) {
+			for (int i = 0; i < 65; i++) {
 				log.info("sleep *** {}", i);
 				Thread.sleep(1000);
 			}
@@ -59,9 +68,9 @@ public class HelloController {
 			log.error("sleep exception", e);
 		}
 
-		String resp = userService.modifyUserInfo(userInfo);
+//		String resp = userService.modifyUserInfo(userInfo);
 		log.info("UPDATE USER SUCCESSFULLY!");
 
-		return resp;
+		return "{\"a\":\"b\"}";
 	}
 }
