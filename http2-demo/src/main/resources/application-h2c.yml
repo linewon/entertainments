@@ -1,0 +1,4 @@
+# profile for http2.0 clear-text  这个暂时还没弄出来
+server:
+  http2:
+    enabled: true

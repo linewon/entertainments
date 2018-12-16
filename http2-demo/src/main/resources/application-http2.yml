@@ -1,0 +1,9 @@
+# profile for http2.0
+server:
+  ssl:
+    key-store: classpath:secret/mykeystore.jks
+    key-store-password: line1983
+    key-password: line1983
+    protocol: TLSv1.2
+  http2:
+    enabled: true

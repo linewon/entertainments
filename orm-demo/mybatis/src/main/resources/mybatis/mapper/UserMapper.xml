@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="line.demo.orm.mybatis.dao.UserMapper">
+
+	<select id="findByUserName" parameterType="java.lang.String"
+		resultType="User">
+		select * from user where user_name = #{userName}
+	</select>
+
+	<!-- 应该定义一个User的别名，在mybatis配置里定义typeAliases，注意标签的顺序！ -->
+	<!-- <insert id="addUser" parameterType="line.demo.orm.entity.User"> -->
+	<insert id="addUser" parameterType="User">
+		insert into
+		<!-- 这个地方，应该在什么地方定义一个User字段的别名 -->
+		user(user_name, nick_name, sex, age)
+		values(#{userName},
+		#{nickName}, #{sex}, #{age})
+	</insert>
+
+	<delete id="dropByUserName" parameterType="java.lang.String">
+		delete from
+		user
+		where user_name = #{userName}
+	</delete>
+
+	<update id="updateUser" parameterType="User">
+		update user set
+		nick_name = #{nickName}, age = #{age}, sex = #{sex} where user_name =
+		#{userName}
+	</update>
+</mapper>

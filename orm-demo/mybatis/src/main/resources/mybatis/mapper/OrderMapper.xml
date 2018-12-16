@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="line.demo.orm.mybatis.dao.OrderMapper">
+
+	<!-- 这个地方，如果不为每一列设置别名的话，会出现映射不完全的问题。 -->
+	<select id="findById" parameterType="int" resultMap="OrderMap">
+		SELECT
+		o.id as o_id,
+		o.user_id as o_user_id,
+		o.status as o_status,
+		o.create_time as o_create_time,
+		o.expire_time as o_expire_time,
+		u.id as u_id,
+		u.user_name as u_user_name,
+		u.nick_name as u_nick_name,
+		u.sex as u_sex,
+		u.age as u_age,
+		oi.id as oi_id,
+		oi.order_id as oi_order_id,
+		oi.product_id as oi_product_id,
+		oi.prod_count as oi_prod_count,
+		p.id as p_id,
+		p.name as p_name,
+		p.stock as p_stock,
+		p.type as p_type
+		FROM
+		`order` o,
+		`user` u,
+		order_item oi,
+		product p
+		WHERE o.user_id = u.id
+		AND o.id = oi.order_id
+		AND oi.product_id = p.id
+		AND o.id = #{id}
+	</select>
+	<resultMap type="Order" id="OrderMap">
+		<id property="id" column="o_id" />
+		<result property="create" column="o_create_time" />
+		<result property="status" column="o_status" />
+		<result property="expire" column="o_expire_time" />
+		<association property="user" javaType="User">
+			<id property="id" column="id" />
+			<result property="userName" column="u_user_name" />
+			<result property="nickName" column="u_nick_name" />
+			<result property="sex" column="u_sex" />
+			<result property="age" column="u_age" />
+		</association>
+		<collection property="itemList" ofType="OrderItem">
+			<id property="id" column="oi_id" />
+			<!-- <result property="orderId" column="order_id"/> -->
+			<result property="prodCount" column="oi_prod_count" />
+			<association property="product" javaType="Product">
+				<id property="id" column="p_id" />
+				<result property="name" column="p_name" />
+				<result property="stock" column="p_stock" />
+				<result property="type" column="p_type" />
+			</association>
+		</collection>
+	</resultMap>
+</mapper>

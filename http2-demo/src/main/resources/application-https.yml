@@ -1,0 +1,8 @@
+# profile for https
+server:
+  ssl:
+    key-store: classpath:secret/mykeystore.jks
+    key-store-password: line1983
+    key-password: line1983
+  http2:
+    enabled: false

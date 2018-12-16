@@ -1,0 +1,9 @@
+server:
+  port: 8080
+  
+spring:
+  profiles:
+    active: http2
+#    active: https
+#    active: http1
+#    active: h2c
