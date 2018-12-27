@@ -1,8 +1,6 @@
 package line.entertains.concur.lock.reentrant;
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantLock;
 
 import line.entertains.concur.lock.Counter;

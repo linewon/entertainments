@@ -22,26 +22,36 @@ public class VolatileDemo {
 		a = 1;
 		canRead = true;
 	}
+
 	public void read() {
 		int i = 0;
-		for (; i < 1000; i++) {
-			// 如果没有用volatile修饰，若此时threadA先进行read操作，则threadB对canRead的修改，不会起作用。
+		for (;; i++) {
+//		for (; i < 1000; i++) {
+			/*
+			 * 如果没有用volatile修饰，若此时threadA先进行read操作，
+			 * 则threadB对canRead的修改，不会起作用。
+			 */
 			if (canRead) {
 				int r = a; // read a
 				System.out.println(r);
 				break;
 			}
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			/*
+			 * 如果这个地方加上sleep，
+			 * 等线程苏醒的时候，好像就会主动刷新工作内存，
+			 * 导致较最开始读到的canRead也更新了。
+			 */
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
 		}
 		if (i == 1000) {
 			System.out.println("BREAK BY FORCE!");
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		final VolatileDemo demo = new VolatileDemo();
 		Thread write = new Thread(new Runnable() {
@@ -56,10 +66,15 @@ public class VolatileDemo {
 				demo.read();
 			}
 		});
-		
+
 		read.start();
+		/*
+		 * 这个地方，如果没有sleep操作的话，
+		 * 即使不加volatile，程序也能退出循环。
+		 * 个人理解，应该是jvm指令重排的结果。
+		 */
 		try {
-			Thread.sleep(500);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
