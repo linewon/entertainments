@@ -29,15 +29,15 @@ public class PoisonJerry {
 	private static int[] jerry(final int numOfRat, final int numOfPoison) {
 
 		/**
-		 * 老鼠喝药情况的数�?
+		 * 老鼠喝药情况的数组?
 		 * index : 老鼠的编号s0, s1, s2
-		 * value : (value & numOfPoison) != 0 表示老鼠喝过这瓶毒药，对应index的�?�鼠给药死了
+		 * value : (value & numOfPoison) != 0 表示老鼠喝过这瓶毒药，对应index的老鼠给药死了
 		 */
 		int[] jerryDrinkPoison = new int[numOfRat];
-		for (int i = 0; i < numOfRat; i++) { // 初始化喝药情�?
+		for (int i = 0; i < numOfRat; i++) { // 初始化喝药情况?
 			jerryDrinkPoison[i] = 1 << (numOfRat - 1 - i);
 		}
-		for (int i = 0; i < numOfRat; i++) { // 为了看的清楚�?点写了两个循�?
+		for (int i = 0; i < numOfRat; i++) { // 为了看的清楚点?点写了两个循环?
 			jerryDrinkPoison[i] = (numOfPoison & jerryDrinkPoison[i]) == 0 ? 0 : 1;
 		}
 		return jerryDrinkPoison;
@@ -46,12 +46,13 @@ public class PoisonJerry {
 	public static void main(String[] args) {
 
 		/**
-		 * 老鼠的死亡情�?
+		 * 老鼠的死亡情况?
 		 */
-		int[] deathOfRat = new int[] { 0, 0, 0, 1, 1, 0, 1, 0, 1, 1 };
+//		int[] deathOfRat = new int[] { 0, 0, 0, 1, 1, 0, 1, 0, 1, 1 };
 //		int[] deathOfRat = new int[] { 0, 1, 1 };
+		int[] deathOfRat = new int[] { 1 };
 		/**
-		 * 毒药的编�?
+		 * 毒药的编号?
 		 */
 		int numOfPoison = jerry(deathOfRat);
 		deathOfRat = jerry(deathOfRat.length, numOfPoison);

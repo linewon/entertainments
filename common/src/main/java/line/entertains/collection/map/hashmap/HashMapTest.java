@@ -38,4 +38,9 @@ public class HashMapTest {
 		System.out.println(d);
 		System.out.println(c);
 	}
+	
+	@Test
+	public void testForInit() {
+		new HashMap<>(18);
+	}
 }
